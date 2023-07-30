@@ -414,6 +414,7 @@ class Manager(object):
             argv.append(default_command)
 
         try:
+            print(f'argv is {argv[1:]}')
             result = self.handle(argv[0], argv[1:])
         except SystemExit as e:
             result = e.code
