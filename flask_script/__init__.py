@@ -10,6 +10,7 @@ from gettext import gettext as _
 from collections import OrderedDict
 
 import argparse
+import logging
 
 from flask import Flask
 from flask._compat import text_type
@@ -28,6 +29,8 @@ safe_actions = (argparse._StoreAction,
                 argparse._AppendAction,
                 argparse._AppendConstAction,
                 argparse._CountAction)
+
+logger = logging.getLogger('flask-script')
 
 
 try:
@@ -414,7 +417,12 @@ class Manager(object):
             argv.append(default_command)
 
         try:
-            print(f'argv is {argv[1:]}')
+            command_name = argv[1:][0]
+            log_message = {
+                'name': 'manage_monitor',
+                'command': command_name,
+            }
+            logger.error(log_message)
             result = self.handle(argv[0], argv[1:])
         except SystemExit as e:
             result = e.code
