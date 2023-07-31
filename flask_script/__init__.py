@@ -422,7 +422,7 @@ class Manager(object):
             log_message = {
                 'name': 'manage_monitor',
                 'command': command_name,
-                'date': str(datetime.datetime.now())
+                'date': datetime.datetime.now()
             }
             logger.error(log_message)
             result = self.handle(argv[0], argv[1:])
