@@ -10,6 +10,7 @@ from gettext import gettext as _
 from collections import OrderedDict
 
 import argparse
+import datetime
 import logging
 
 from flask import Flask
@@ -421,6 +422,7 @@ class Manager(object):
             log_message = {
                 'name': 'manage_monitor',
                 'command': command_name,
+                'date': datetime.datetime.now()
             }
             logger.error(log_message)
             result = self.handle(argv[0], argv[1:])
